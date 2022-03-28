@@ -128,8 +128,19 @@
 using namespace std;
 
 // Device 1: Button + LED
+// SETUP
 wiringPiSetup();
-pinMode(17,OUTPUT);
+int buttonPin = 17;
+int buttonLEDPin = 18;
+boolean buttonPressed = 0;
+
+pinMode(buttonPin,INPUT);
+pinMode(buttonLEDPin, OUTPUT);
+
+// PROGRAM
+buttonPressed = digitalRead(buttonPin);
+digitalWrite(buttonLEDPin, buttonPressed);
+
 
 for (int i =0;i<10;i++) {
     digitalWrite(17,HIGH);
