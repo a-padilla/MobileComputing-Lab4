@@ -123,9 +123,11 @@
 // Any return values should match the specified output type
 
 #include "wiringPi"
+#include "dht.h"
 
 using namespace std;
 
+// Device 1: Button + LED
 wiringPiSetup();
 pinMode(17,OUTPUT);
 
@@ -134,6 +136,49 @@ for (int i =0;i<10;i++) {
     delay(500);
     digitalWrite(17,LOW):
 }
+
+// Device 2: DHT11 Temp/Humidity Sensor (From Kit)
+// SETUP
+#define dht_apin A0 //Analog Pin sensor is connected to
+dht DHT;
+
+Serial.begin(9600);
+delay(1500); // Let system boot
+
+// PROGRAM
+DHT.read11(dht_apin);
+Serial.print("temperature = ");
+Serial.print(DHT.temperature);
+delay(2000); // Wait before detecting
+
+// Device 3: KY-012 Active Buzzer Module (From Kit)
+// SETUP
+int buzzerPin = 8;
+
+pinMode(buzzerPin, OUTPUT);
+
+// PROGRAM
+digitalWrite(buzzerPin, HIGH);
+delay(500);
+digitalWrite(buzzerPin, LOW);
+delay(500);
+
+// Device 4: KY-038 Microphone Sound Sensor (From Kit)
+// SETUP
+int soundPin = 7;
+int soundLEDPin = 13;
+boolean soundDetected = 0;
+
+pinMode(soundPin, INPUT);
+pinMode(soundLEDPin, OUTPUT);
+Serial.begin(9600);
+delay(1500); // Let system boot
+
+// PROGRAM
+soundDetected = digitalRead(soundPin);
+digitalWrite(soundLEDPin, soundDetected);
+
+
 ]]></Service_Formula>
 					<Service_NumberInputs>1</Service_NumberInputs>
 					<Service_InputTypes>int</Service_InputTypes>
