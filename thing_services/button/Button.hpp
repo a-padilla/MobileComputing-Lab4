@@ -13,10 +13,10 @@ class Button
 {
 private:
 
-    vector<time_t> push_log;
+    int button_push_count;
 
 public:
-    Button(/* args */);
+    Button() : button_push_count(0) {}
     void log_push();
     void clear_log();
     string Atlas_get_log();

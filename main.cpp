@@ -14,7 +14,6 @@ int main(){
             button_logger.log_push();
         }
         while(digitalRead(BTN_PIN) == HIGH);
-        delay(500);
     }
 
 }
