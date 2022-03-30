@@ -1,20 +1,26 @@
 #include <wiringPi.h>
 //#include <iostream>
 
-#define BUZZ_PIN 16
+#define LED_PIN 16
 
-void pulse_buzz(int time) {
+void pulse_led(int time) {
+    // Setup WiringPi GPIO pins
     wiringPiSetupGpio();
-    pinMode(BUZZ_PIN, OUTPUT);
+    // Pin mode is output since this is an actuator
+    pinMode(LED_PIN, OUTPUT);
     
-    digitalWrite(BUZZ_PIN, HIGH);
+    // Write high to turn on LED
+    digitalWrite(LED_PIN, HIGH);
+    // Wait specified amount of time
     delay(time);
-    digitalWrite(BUZZ_PIN, LOW);
+    // Write back low to turn off
+    digitalWrite(LED_PIN, LOW);
     
 }
 
 int main() {
-	pulse_buzz(2000);
+    // Call function with different inputs, delay to see both pulses.
+	pulse_led(2000);
 	delay(1000);
-	pulse_buzz(2000);
+	pulse_led(4000);
 }
