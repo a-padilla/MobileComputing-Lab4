@@ -1,13 +1,13 @@
 #include <wiringPi.h>
+#include <iostream>
 
-#define TILT_PIN = 24
-using namespace std;
+#define TILT_PIN 24
 
 int read_tilt() {
     wiringPiSetupGpio();
     pinMode(TILT_PIN, INPUT);
 
-    if(digital_read(TILT_PIN) == HIGH) {
+    if(digitalRead(TILT_PIN) == HIGH) {
         return 1;
     }
     else {
@@ -18,8 +18,6 @@ int read_tilt() {
 
 int main() {
     while(true){
-        printf(read_tilt());
+        std::cout << read_tilt() << std::endl;
     }
 }
-
-
